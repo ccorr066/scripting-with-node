@@ -1,9 +1,11 @@
 const fs = require("fs");
 
 const { getComponents, getName, getDesc, trim, getInputs } = require("./regex");
-const { stringify } = require("querystring");
+//const { stringify } = require("querystring");
 
-const sourceFile = String(fs.readFileSync("html-pages/basic-functions.html"));
+const sourceFile = String(
+   fs.readFileSync("html-pages/intermediate-functions.html")
+);
 
 const components = getComponents(sourceFile);
 
@@ -12,8 +14,8 @@ const componentObjs = components.map((component) => {
       name: getName(component)[0], // String
       desc: trim(getDesc(component)[0]), // String
       inputs: getInputs(component).length, // Number
-      type: "basic", // String
-      typeNum: 100, // Number
+      type: "intermediate", // String
+      typeNum: 200, // Number
       isFavorite: false, // Boolean
    };
 });
@@ -29,5 +31,5 @@ for (let i = 0; i < reverseObjs.length; i++) {
 
 console.log(orderedObjs);
 
-const targetFile = "./json-files/basic.json";
+const targetFile = "./json-files/intermediate.json";
 fs.writeFileSync(targetFile, JSON.stringify(orderedObjs));

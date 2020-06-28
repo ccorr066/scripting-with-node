@@ -11,7 +11,11 @@ module.exports = {
       return component.match(/(?<=<\/b>\s-\s).+(?=<\/p>)/s);
    },
    getInputs(component) {
-      return component.match(/<input.+?\/\>/gs);
+      let arrayInput = component.match(/<input.+?\/\>/gs);
+      if (arrayInput == null) {
+         return [];
+      }
+      return arrayInput;
    },
    trim(str) {
       return str

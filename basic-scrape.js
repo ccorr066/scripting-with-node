@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const { getComponents, getName, getDesc, trim, getInputs } = require("./regex");
-const { stringify } = require("querystring");
+//const { stringify } = require("querystring");
 
 const sourceFile = String(fs.readFileSync("html-pages/basic-functions.html"));
 
@@ -12,9 +12,9 @@ const componentObjs = components.map((component) => {
       name: getName(component)[0], // String
       desc: trim(getDesc(component)[0]), // String
       inputs: getInputs(component).length, // Number
-      type: "basic", // String
-      typeNum: 100, // Number
-      isFavorite: false, // Boolean
+      type: "basic", // we are scrapping only the basic.html file
+      typeNum: 100, //designated for basic.html
+      isFavorite: false, // default is false
    };
 });
 
