@@ -3,22 +3,27 @@ const fs = require("fs");
 const { getComponents, getName, getDesc, trim, getInputs } = require("./regex");
 //const { stringify } = require("querystring");
 
-const sourceFile = String(fs.readFileSync("html-pages/functional.html"));
+const functionalSourceFile = String(
+   fs.readFileSync("html-pages/functional.html")
+);
 
-const components = getComponents(sourceFile);
+const functionalComponents = getComponents(functionalSourceFile);
 
-const componentObjs = components.map((component) => {
-   return {
-      name: getName(component)[0], // String
-      desc: trim(getDesc(component)[0]), // String
-      inputs: getInputs(component).length, // Number
-      type: "functional", // String
-      typeNum: 300, // Number
-      isFavorite: false, // Boolean
-   };
-});
+const functionalComponentObjs = functionalComponents.map(
+   (component, orderedObjs) => {
+      return {
+         name: getName(component)[0], // String
+         desc: trim(getDesc(component)[0]), // String
+         inputs: getInputs(component).length, // Number
+         type: "functional", // String
+         typeNum: 300, // Number
+         isFavorite: false, // Boolean
+         order: 300 + orderedObjs,
+      };
+   }
+);
 
-const reverseObjs = componentObjs.reverse();
+const reverseObjs = functionalComponentObjs.reverse();
 
 const orderedObjs = [];
 for (let i = 0; i < reverseObjs.length; i++) {
